@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#grid-map {
+  height: 500px;
+  width: 500px;
+  border: 1px solid black;
+  background-color: lightgrey;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+.grid-tile {
+  height: 50px;
+  width: 50px;
+  border: 1px solid blue;
+  background-color: skyblue;
+  box-sizing: border-box;
+}
+
+.snake1 {
+  border: 1px solid red;
+  background-color: maroon;
+  box-sizing: border-box;
+}
