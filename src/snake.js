@@ -3,8 +3,8 @@ class Snake {
     this.name = name;
     this.x = startX;
     this.y = startY;
-    this.head = $(`#r${this.y}c${this.x}`) // id which snake head is in
-    this.body = [$(`#r${this.y}c${this.x}`), $(`#r${this.y}c${this.x}`), $(`#r${this.y}c${this.x}`), $(`#r${this.y}c${this.x}`)] // array of coordinates in jQuery form (such as this.head)
+    this.head = [this.x, this.y] // id which snake head is in
+    this.body = [this.head, this.head, this.head]; // gets bigger through grow()
     // all of the Snake directions
     // can be called by 'snake.up, snake.down, snake.left, snake.right
     this.up = upKey
@@ -12,11 +12,15 @@ class Snake {
     this.down = downKey
     this.left = leftKey
     this.currentDirection = this.right; // starting direction
-    this.score; //snake's score
+    this.score = 0; //snake's score
   }
   turn(directionString) {
     // allowed directions.  since we can have multiple snakes, we do the check within the snake class, not the code
     let directions = [this.up, this.right, this.down, this.left];
+    // from testing, determines the problimatic body spot that the snake could turn into
+    // if player makes a u-turn too quickly, snake would go into itself
+    // by using bodyDetection, snake will not turn into itself with two keys if key input is too quick
+    let bodyDetection = this.body[this.body.length - 1];
     // if string is valid
     if (directions.includes(directionString)) {
       // figure out which direction to turn
@@ -24,13 +28,15 @@ class Snake {
         // snake facing up or down can only turn left or right
         case this.up:
         case this.down:
-          if (this.currentDirection === this.left || this.currentDirection === this.right)
+          if (bodyDetection[0] === (this.x - 1)
+            || bodyDetection[0] === (this.x + 1))
             this.currentDirection = directionString;
           break;
         // snake facing left or right can only turn up or down
         case this.right:
         case this.left:
-          if (this.currentDirection === this.up || this.currentDirection === this.down)
+          if (bodyDetection[1] === (this.y - 1)
+            || bodyDetection[1] === (this.y + 1))
             this.currentDirection = directionString;
           break;
       }
@@ -52,43 +58,22 @@ class Snake {
         this.x -= 1;
         break;
     }
-    // currentGrid is definded in javascript.js
-    // if snake will NOT collide, snake will move
-    if (!this.collide(currentGrid.x, currentGrid.y)) {
-      this.body.push(this.head);
-      this.body.shift();
-      this.head = $(`#r${this.y}c${this.x}`);
-    };
+
+    this.body.push(this.head);
+    this.body.shift();
+    this.head = [this.x, this.y];
+
   }
   grow() {
-
-  }
-  draw() {
-    this.head.removeClass(this.name) // removing previous body
-    this.head.removeClass("head")
-    this.body.forEach((bodyTile) => {
-      return bodyTile.removeClass(this.name)
-    })
-    this.grow(); // grow first, then move
-    this.move();
-    this.head.addClass(this.name)
-    this.head.removeClass("head")
-    this.body.forEach((bodyTile) => {
-      return bodyTile.addClass(this.name)
-    })
-  }
-  // return true when snake hits object or border
-  collide(xLimit, yLimit) {
-    // border
-    if (!(this.x > 0) || !(this.x <= xLimit)
-      || !(this.y > 0) || !(this.y <= yLimit)) {
-      currentGrid.gameOver();
-      return true;
-    } else {
-      console.log(`snake now at ${this.x}, ${this.y}`)
-      return false;
+    if (this.body.length === 0) {
+      this.body.push(this.head);
     }
-  }
+    this.body.unshift(this.body[0]);
 
+  }
+  // used in grid.js for drawing
+  jQuerySelector(locationArray) {
+    return $(`#r${locationArray[1]}c${locationArray[0]}`)
+  }
 
 }
