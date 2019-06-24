@@ -10,6 +10,10 @@ body {
   justify-content: center;
 }
 
+#scores {
+  display: none;
+}
+
 #grid-map {
   position: relative;
   height: 500px;

@@ -1,10 +1,11 @@
 class Snake {
-  constructor(name, startX, startY, upKey, rightKey, downKey, leftKey) {
+  constructor(name, matrixCode, startX, startY, upKey, rightKey, downKey, leftKey) {
     this.name = name;
+    this.matrixCode = matrixCode;
     this.x = startX;
     this.y = startY;
     this.head = [this.x, this.y] // id which snake head is in
-    this.body = [this.head, this.head, this.head]; // gets bigger through grow()
+    this.body = []; // gets bigger through grow()
     // all of the Snake directions
     // can be called by 'snake.up, snake.down, snake.left, snake.right
     this.up = upKey
