@@ -75,5 +75,4 @@ class Snake {
   jQuerySelector(locationArray) {
     return $(`#r${locationArray[1]}c${locationArray[0]}`)
   }
-
 }

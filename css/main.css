@@ -50,8 +50,45 @@ body {
 
 #grid-map .apple {
   position: relative;
-  border: 1px solid green;
-  background-color: rgb(118, 231, 127);
+  border: 1px solid rgb(118, 231, 127);
+  background-color: green;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+#grid-map .obsticle {
+  position: relative;
+  border: 1px solid rgb(105, 109, 105);
+  background-color: black;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+#instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#instructions .apple {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  position: relative;
+  border: 1px solid rgb(118, 231, 127);
+  background-color: green;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+#instructions .obsticle {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  position: relative;
+  border: 1px solid rgb(105, 109, 105);
+  background-color: black;
   box-sizing: border-box;
   z-index: 2;
 }

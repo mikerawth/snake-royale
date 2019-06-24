@@ -3,8 +3,9 @@ class Grid {
   constructor(xLength, yLength) {
     this.x = xLength; // amount of tiles on the x-axis
     this.y = yLength; // amount of tiles on the y-axis
-    this.speed = 75; //speed in milliseconds
+    this.speed = 100; //speed in milliseconds
     this.snake1 = new Snake("snake1", 3, 3, "ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft");
+    // this.snake2 = new Snake("snake2", 22, 22, "W", "D", "S", "A");
     this.snakeObjectArray = [this.snake1]
     this.appleObjectArray = [];
     this.obsticleObjectArray = [];
@@ -92,6 +93,7 @@ class Grid {
           snakeObject.grow();
           snakeObject.score += 1;
           this.clearApple(apple, index);
+          this.placeObsticle()
         }
       })
     })
@@ -105,10 +107,24 @@ class Grid {
     return false;
   }
   generateObsticle() {
+    console.log('function called')
     let randomX = Math.ceil(Math.random() * this.x)
     let randomY = Math.ceil(Math.random() * this.y)
-    console.log(`generating obsticle at ${[randomX, randomY]}`)
-    this.appleObjectArray.push([randomX, randomY]);
+    let randomCordinates = [randomX, randomY];
+    // this.obsticleObjectArray.forEach(obsticle => {
+    if ((!this.obsticleObjectArray.indexOf(randomCordinates) !== -1)) {
+      this.obsticleObjectArray.push(randomCordinates);
+    }
+    else {
+      this.generateObsticle();
+    }
+    // })
+  }
+  placeObsticle() {
+    this.generateObsticle();
+    this.obsticleObjectArray.forEach(obsticle => {
+      this.jQuerySelector(obsticle).addClass("obsticle");
+    })
   }
   addSnakeBodiesToObsticleArray() {
     this.snakeObjectArray.forEach(snakeObject => {
@@ -118,11 +134,22 @@ class Grid {
     })
     console.log(this.obsticleObjectArray);
   }
+  // if snake hits obsticle, return true
+  snakeCollidesWithAnObsticle(snakeObject) {
+    for (let i = 0; i < this.obsticleObjectArray.length; i++) {
+      if (this.gridLocationCompare(snakeObject.head, this.obsticleObjectArray[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
   collisionDetection() {
     this.snakeObjectArray.forEach(snakeObject => {
       if (!(snakeObject.x > 0) || !(snakeObject.x <= this.x)
         || !(snakeObject.y > 0) || !(snakeObject.y <= this.y)
-        || this.snakeHitsOwnBody(snakeObject)) {
+        || this.snakeHitsOwnBody(snakeObject)
+        || this.snakeCollidesWithAnObsticle(snakeObject)
+      ) {
         this.gameOver();
         return true;
       } else {
