@@ -18,10 +18,8 @@ $(document).ready(() => {
 
 
   // upon each key down
-  $(document).on("keydown", (e) => {
+  // $(document).on("keydown", (e) => {
 
-    currentGrid.snakeObjectArray.forEach(snakeObject => {
-      snakeObject.turn(e.key);
-    });
-  })
+
+  // })
 })
