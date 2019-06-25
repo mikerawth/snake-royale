@@ -27,12 +27,12 @@ class Items {
   removeFromCollection(arrayOfCordinates) {
     this.collectionOfUs.splice(this.locateWithinCollection(arrayOfCordinates), 1)
   }
-  generate() {
-    let randomX = Math.floor(Math.random() * this.xBoundary)
-    let randomY = Math.floor(Math.random() * this.yBoundary)
-    this.pushIntoCollection(this.cordinatesArray(randomX, randomY));
+  generateRandom() {
+    let randomX = Math.floor(Math.random() * (this.xBoundary - 2)) + 1
+    let randomY = Math.floor(Math.random() * (this.yBoundary - 2)) + 1
+    this.pushIntoCollection(this.cordinatesArray((randomX), (randomY)));
   }
-  generateSpecific(x, y) {
+  generate(x, y) {
     this.pushIntoCollection(this.cordinatesArray(x, y));
   }
   generateAmount(numberToGenerate) {
