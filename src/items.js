@@ -3,7 +3,7 @@ class Items {
     this.collectionOfUs = [];
     this.xBoundary = xBoundary;
     this.yBoundary = yBoundary;
-    this.className = "object" // no intention of calling object directly.  This is place holder for grid.js functions
+    this.className = "item" // no intention of calling object directly.  This is place holder for grid.js functions
     this.matrixCode = "x"
   }
   cordinatesArray(xCordinate, yCordinate) {
@@ -57,17 +57,17 @@ class Items {
   }
 }
 
-class Apples extends Items {
-  constructor(xBoundary, yBoundary) {
-    super(xBoundary, yBoundary);
-    this.className = "apple";
-    this.matrixCode = "a"
-  }
-}
+// class Apples extends Items {
+//   constructor(xBoundary, yBoundary) {
+//     super(xBoundary, yBoundary);
+//     this.className = "apple";
+//     this.matrixCode = "a"
+//   }
+// }
 
-class Obstacles extends Items {
-  constructor(xBoundary, yBoundary) {
-    super(xBoundary, yBoundary);
-    this.className = "obsticle";
-  }
-}
+// class Obstacles extends Items {
+//   constructor(xBoundary, yBoundary) {
+//     super(xBoundary, yBoundary);
+//     this.className = "obsticle";
+//   }
+// }

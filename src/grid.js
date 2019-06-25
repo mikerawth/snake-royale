@@ -2,9 +2,9 @@
 class Grid extends Game {
   constructor(snakeArray, xBoundary, yBoundary) {
     super(snakeArray, xBoundary, yBoundary)
-    this.speed = 100; //speed in milliseconds
-    this.appleArrayObject = new Apples(this.xBoundary, this.yBoundary);
-    this.obsticleArrayObject = new Obstacles(this.xBoundary, this.yBoundary);
+    this.speed = 75; //speed in milliseconds
+    this.appleArrayObject = new Items(this.xBoundary, this.yBoundary);
+    // this.obsticleArrayObject = new Obstacles(this.xBoundary, this.yBoundary);
   }
   jQuerySelector(row, col, classString) {
     return `<div id="r${row + 1}c${col + 1}" class="${classString}"></div>`
@@ -27,16 +27,19 @@ class Grid extends Game {
       }
     }
   }
+  displayScore() {
+    $("#scores span .snake1").text(this.snakeArray[0].score)
+  }
   animate() {
     this.animation = setInterval(() => {
       super.runGame();
       this.drawGrid();
+      this.displayScore();
       if (this.gameOver) {
         console.log("game over")
         this.endGame();
       }
     }, this.speed)
-
   }
   endGame() {
     clearInterval(this.animation)
