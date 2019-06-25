@@ -45,26 +45,46 @@ class Game {
     }
   }
   populateMatrixWithSnakes() {
+    // BUG: first apple snake eats will grow two bodies...minor
+    // TEMP FIX: Snake startS with some body arrays
     // snakes
     for (let i = 0; i < this.snakeArray.length; i++) {
+      // move the snakes
+      this.snakeArray[i].move()
 
 
-      //populate the body first
-      for (let j = 0; j < this.snakeArray[i].body.length; j++) {
-        this.gameMatrix[this.snakeArray[i].body[j][0]][this.snakeArray[i].body[j][1]] = `b${this.snakeArray[i].matrixCode}`;
-      }
-      // then populate to populate head
       // detect eating
       if (this.gameMatrix[this.snakeArray[i].head[0]][this.snakeArray[i].head[1]] === `a`) {
         this.snakeArray[i].grow();
         this.appleArrayObject.generate();
         this.appleArrayObject.removeFromCollection(this.snakeArray[i].head)
       }
+
       // detect obsticle
       if (this.gameMatrix[this.snakeArray[i].head[0]][this.snakeArray[i].head[1]] === `o`) {
         console.log('game over')
       }
+
+
+
+
+
+      // populate the body 
+      for (let j = 0; j < this.snakeArray[i].body.length; j++) {
+        this.gameMatrix[this.snakeArray[i].body[j][0]][this.snakeArray[i].body[j][1]] = `b${this.snakeArray[i].matrixCode}`;
+      }
+
+      // then populate head
       this.gameMatrix[this.snakeArray[i].head[0]][this.snakeArray[i].head[1]] = `h${this.snakeArray[i].matrixCode}`;
     }
   }
+
+  runGame() {
+    this.generateMatrix();
+    this.populateMatrixWithObjects();
+    this.populateMatrixWithSnakes();
+    console.log(this.gameMatrix);
+    console.log("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
+  }
+
 }

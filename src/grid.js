@@ -5,17 +5,24 @@ class Grid extends Game {
     this.speed = 100; //speed in milliseconds
     this.appleArrayObject = new Apples(this.xBoundary, this.yBoundary);
     this.obsticleArrayObject = new Obsticles(this.xBoundary, this.yBoundary);
-    this.displayGrid = [];
   }
   drawGrid() {
-    let matrix = []
-    super.generateMatrix();
+    $("#grid-map").empty();
+    this.displayGrid = []
     for (let row = 0; row < this.gameMatrix.length; row++) {
-      matrix[row] = []
+      this.displayGrid[row] = []
       for (let col = 0; col < this.gameMatrix[row].length; col++) {
-        matrix[row][col] = $("#grid-map").append(`<div id="r${row + 1}c${col + 1}" class="grid-tile"></div>`)
+        if (this.gameMatrix[row][col].slice(1) === "s1") {
+          this.displayGrid[row][col] = $("#grid-map").append(`<div id="r${row + 1}c${col + 1}" class="grid-tile snake1"></div>`)
+
+        } else {
+          this.displayGrid[row][col] = $("#grid-map").append(`<div id="r${row + 1}c${col + 1}" class="grid-tile"></div>`)
+        }
       }
     }
-    this.displayGrid = matrix;
+  }
+  animate() {
+    super.runGame();
+    this.drawGrid();
   }
 }

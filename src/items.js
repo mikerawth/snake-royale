@@ -1,4 +1,4 @@
-class Objects {
+class Items {
   constructor(xBoundary, yBoundary) {
     this.collectionOfUs = [];
     this.xBoundary = xBoundary;
@@ -32,6 +32,9 @@ class Objects {
     let randomY = Math.floor(Math.random() * this.yBoundary)
     this.pushIntoCollection(this.cordinatesArray(randomX, randomY));
   }
+  generateSpecific(x, y) {
+    this.pushIntoCollection(this.cordinatesArray(x, y));
+  }
   generateAmount(numberToGenerate) {
     while (numberToGenerate > 0) {
       this.generate()
@@ -54,7 +57,7 @@ class Objects {
   }
 }
 
-class Apples extends Objects {
+class Apples extends Items {
   constructor(xBoundary, yBoundary) {
     super(xBoundary, yBoundary);
     this.className = "apple";
@@ -62,7 +65,7 @@ class Apples extends Objects {
   }
 }
 
-class Obsticles extends Objects {
+class Obsticles extends Items {
   constructor(xBoundary, yBoundary) {
     super(xBoundary, yBoundary);
     this.className = "obsticle";
