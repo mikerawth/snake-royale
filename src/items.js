@@ -71,3 +71,7 @@ class Items {
 //     this.className = "obsticle";
 //   }
 // }
+
+// class MovingItems extends Items {
+
+// }

@@ -5,8 +5,9 @@ let currentGrid, snake1, snake2;
 // will load when everything is ready
 $(document).ready(() => {
   console.log("ready");
-  let theSnake = new Snake("snake1", "s1", 2, 2, "ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft")
-  currentGrid = new Grid([theSnake], 25, 25);
+  let snake1 = new Snake("snake1", "s1", 2, 2, "ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "ArrowRight");
+  let snake2 = new Snake("snake2", "s2", 22, 22, "w", "d", "s", "a", "a");
+  currentGrid = new Grid([snake1, snake2], 25, 25);
   // currentGrid.drawGrid();
 
   $("#start-game-btn").on("click", () => {

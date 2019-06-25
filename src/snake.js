@@ -1,5 +1,5 @@
 class Snake {
-  constructor(name, matrixCode, startX, startY, upKey, rightKey, downKey, leftKey) {
+  constructor(name, matrixCode, startX, startY, upKey, rightKey, downKey, leftKey, startingDirection) {
     this.name = name;
     this.matrixCode = matrixCode;
     this.x = startX;
@@ -12,7 +12,7 @@ class Snake {
     this.right = rightKey
     this.down = downKey
     this.left = leftKey
-    this.currentDirection = this.right; // starting direction
+    this.currentDirection = startingDirection; // starting direction
     this.score = 0; //snake's score
   }
   turn(directionString) {
@@ -21,7 +21,7 @@ class Snake {
     // from testing, determines the problimatic body spot that the snake could turn into
     // if player makes a u-turn too quickly, snake would go into itself
     // by using bodyDetection, snake will not turn into itself with two keys if key input is too quick
-    let bodyDetection = this.body[this.body.length - 1];
+    let bodyDetection = this.body[this.body.length - 2];
     // if string is valid
     if (directions.includes(directionString)) {
       // figure out which direction to turn
@@ -64,9 +64,9 @@ class Snake {
         break;
     }
 
+    this.head = [this.x, this.y];
     this.body.push(this.head);
     this.body.shift();
-    this.head = [this.x, this.y];
 
   }
   grow() {

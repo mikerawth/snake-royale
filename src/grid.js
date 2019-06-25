@@ -16,6 +16,8 @@ class Grid extends Game {
         let matrixCodeString = this.gameMatrix[row][col];
         if (matrixCodeString.slice(1) === "s1") {
           $("#grid-map").append(this.jQuerySelector(row, col, `grid-tile snake1`))
+        } else if (matrixCodeString.slice(1) === "s2") {
+          $("#grid-map").append(this.jQuerySelector(row, col, `grid-tile snake2`))
         } else if (matrixCodeString === "a") {
           $("#grid-map").append(this.jQuerySelector(row, col, `grid-tile apple`))
         }

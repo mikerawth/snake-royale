@@ -52,6 +52,14 @@ body {
   z-index: 1;
 }
 
+#grid-map .snake2 {
+  position: relative;
+  border: 1px solid red;
+  background-color: maroon;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
 #grid-map .apple {
   position: relative;
   border: 1px solid rgb(118, 231, 127);

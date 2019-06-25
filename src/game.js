@@ -7,6 +7,16 @@ class Game {
     // this.obstacleArrayObject = new Items(this.xBoundary, this.yBoundary);
     this.gameOver = false;
   }
+  // generateSnakes() {
+  //   this.snake1 = new Snake("snake1", "s1", 2, 2, "ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "ArrowRight");
+  //   this.snake2 = new Snake("snake2", "s2", 23, 23, "W", "D", "S", "A", "A");
+  //   this.pushSnakesInArray([snake1, snake2])
+  // }
+  // pushSnakesInArray(arrayOfSnakes) {
+  //   for (let i = 0; i < arrayOfSnakes.length; i++) {
+  //     this.snakeArray.push(arrayOfSnakes[i]);
+  //   }
+  // }
   generateMatrix() {
     let matrix = [];
     for (let row = 0; row < this.yBoundary; row++) {
@@ -30,11 +40,7 @@ class Game {
       return false
     }
   }
-  // snakeCollisionCheck(){
-  //   for(let i = 0; i < this.snakeArray.length; i++) {
-  //     let currentSnake
-  //   }
-  // }
+
   populateMatrixWithApples() {
     let appleArray = this.appleArrayObject.collectionOfUs
     // apples
@@ -51,16 +57,6 @@ class Game {
       } else {
         this.appleArrayObject.removeFromCollection(appleArray[i])
       }
-    }
-  }
-
-  populateMatrixWithObstacle() {
-    let randomX = Math.floor(Math.random() * (this.xBoundary - 2)) + 1
-    let randomY = Math.floor(Math.random() * (this.yBoundary - 2)) + 1
-    if (this.isSpaceAvailable([randomX, randomY])) {
-      this.gameMatrix[randomX, randomY] = `o`;
-    } else {
-      this.turnSnakespopulateMatrixWithObstacle()
     }
   }
 
@@ -88,62 +84,64 @@ class Game {
     }
     return [predictedX, predictedY];
   }
+  populateSnakeBody(snakeObject) {
+    for (let j = 0; j < snakeObject.body.length; j++) {
+      // let currentSnakeBody = snakeObject.body[j];
+      let predictedX = snakeObject.body[j][0];
+      let predictedY = snakeObject.body[j][1];
+      // if (j = 0) {
+      //   this.gameMatrix[predictedY][predictedX] = "_"
+      // } else {
+      this.gameMatrix[predictedY][predictedX] = `b${snakeObject.matrixCode}`;
+      // }
+    }
+  }
   populateMatrixWithSnakes() {
-    // snakes
     for (let i = 0; i < this.snakeArray.length; i++) {
       let currentSnake = this.snakeArray[i];
-
-      let predictedSnakeHeadPosition = this.nextSnakePosition(currentSnake)
-      // populate the body 
-      for (let j = 0; j < currentSnake.body.length; j++) {
-        let currentSnakeBody = currentSnake.body[j];
-        this.gameMatrix[currentSnakeBody[1]][currentSnakeBody[0]] = `b${currentSnake.matrixCode}`;
-      }
+      let predictedSnakePosition = this.nextSnakePosition(currentSnake);
+      this.gameMatrix[currentSnake.head[1]][currentSnake.head[0]] = `h${currentSnake.matrixCode}`;
+      this.populateSnakeBody(currentSnake);
       // detect obstacle
-
-      if (this.gameMatrix[predictedSnakeHeadPosition[1]][predictedSnakeHeadPosition[0]] === `o`
-        || this.gameMatrix[predictedSnakeHeadPosition[1]][predictedSnakeHeadPosition[0]].slice(0, 1) === `b`) {
+      console.log(this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]])
+      if (this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]] === `o`
+        || this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]].slice(1, 2) === `s`) {
         this.gameOver = true;
-
       } else {
         this.gameOver = false;
         currentSnake.move()
         if (this.gameMatrix[currentSnake.head[1]][currentSnake.head[0]] === `a`) {
           currentSnake.grow();
-          // this.populateMatrixWithObstacle();
           currentSnake.score += 1;
           this.appleArrayObject.removeFromCollection(currentSnake.head)
         }
       }
-      // // populate the body 
-      // for (let j = 0; j < currentSnake.body.length; j++) {
-      //   let currentSnakeBody = currentSnake.body[j];
-      //   this.gameMatrix[currentSnakeBody[1]][currentSnakeBody[0]] = `b${currentSnake.matrixCode}`;
-      // }
+    }
+    return this.gameOver;
+  }
 
-      // populate head
-      this.gameMatrix[currentSnake.head[1]][currentSnake.head[0]] = `h${currentSnake.matrixCode}`;
-
-      return this.gameOver;
-
+  growBodyOfEachSnakeBy(number) {
+    for (let i = 0; i < this.snakeArray.length; i++) {
+      let tempCounter = number;
+      do {
+        this.snakeArray[i].grow()
+        tempCounter--;
+      } while (tempCounter > 0)
     }
   }
 
   startGame() {
-    this.snakeArray[0].grow();
     this.generateMatrix();
+    this.growBodyOfEachSnakeBy(2);
     this.populateMatrixWithApples();
     this.populateMatrixWithSnakes();
-    console.log(this.gameMatrix);
 
   }
 
   runGame() {
-    // if (this.gameOver === false) {
     this.generateMatrix();
     this.populateMatrixWithApples();
     this.populateMatrixWithSnakes();
-    // }
   }
 
 }
