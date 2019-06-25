@@ -25,21 +25,25 @@ class Snake {
     // if string is valid
     if (directions.includes(directionString)) {
       // figure out which direction to turn
-      switch (directionString) {
-        // snake facing up or down can only turn left or right
-        case this.up:
-        case this.down:
-          if (bodyDetection[0] === (this.x - 1)
-            || bodyDetection[0] === (this.x + 1))
-            this.currentDirection = directionString;
-          break;
-        // snake facing left or right can only turn up or down
-        case this.right:
-        case this.left:
-          if (bodyDetection[1] === (this.y - 1)
-            || bodyDetection[1] === (this.y + 1))
-            this.currentDirection = directionString;
-          break;
+      if (this.body.length === 0) {
+        this.currentDirection = directionString;
+      } else {
+        switch (directionString) {
+          // snake facing up or down can only turn left or right
+          case this.up:
+          case this.down:
+            if (bodyDetection[0] === (this.x - 1)
+              || bodyDetection[0] === (this.x + 1))
+              this.currentDirection = directionString;
+            break;
+          // snake facing left or right can only turn up or down
+          case this.right:
+          case this.left:
+            if (bodyDetection[1] === (this.y - 1)
+              || bodyDetection[1] === (this.y + 1))
+              this.currentDirection = directionString;
+            break;
+        }
       }
     }
   }

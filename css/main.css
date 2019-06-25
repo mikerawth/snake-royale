@@ -60,12 +60,12 @@ body {
   z-index: 2;
 }
 
-#grid-map .obsticle {
+#grid-map .obstacle {
   position: relative;
-  border: 1px solid rgb(105, 109, 105);
-  background-color: black;
-  box-sizing: border-box;
-  z-index: 2;
+  height: 20px;
+  width: 20px;
+
+  z-index: -1;
 }
 
 #instructions {
@@ -86,13 +86,12 @@ body {
   z-index: 2;
 }
 
-#instructions .obsticle {
+/* #instructions .obstacle {
   height: 20px;
   width: 20px;
   display: inline-block;
   position: relative;
-  border: 1px solid rgb(105, 109, 105);
   background-color: black;
   box-sizing: border-box;
   z-index: 2;
-}
+} */

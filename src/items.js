@@ -65,7 +65,7 @@ class Apples extends Items {
   }
 }
 
-class Obsticles extends Items {
+class Obstacles extends Items {
   constructor(xBoundary, yBoundary) {
     super(xBoundary, yBoundary);
     this.className = "obsticle";

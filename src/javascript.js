@@ -20,8 +20,8 @@ $(document).ready(() => {
 
 
   // upon each key down
-  // $(document).on("keydown", (e) => {
-
-
-  // })
+  $(document).on("keydown", (e) => {
+    console.log(e.key)
+    currentGrid.turnSnakes(e.key);
+  })
 })
