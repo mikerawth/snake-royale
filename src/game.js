@@ -43,8 +43,6 @@ class Game {
 
   populateMatrixWithApples() {
     let appleArray = this.appleArrayObject.collectionOfUs
-    // apples
-    // going through array of apples
     let counter = appleArray.length;
     while (counter < 3) {
       this.appleArrayObject.generateRandom();
@@ -103,12 +101,12 @@ class Game {
       this.gameMatrix[currentSnake.head[1]][currentSnake.head[0]] = `h${currentSnake.matrixCode}`;
       this.populateSnakeBody(currentSnake);
       // detect obstacle
-      console.log(this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]])
       if (this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]] === `o`
         || this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]].slice(1, 2) === `s`) {
-        this.gameOver = true;
-      } else {
-        this.gameOver = false;
+        currentSnake.crash = true;
+      }
+      else {
+        currentSnake.crash = false;
         currentSnake.move()
         if (this.gameMatrix[currentSnake.head[1]][currentSnake.head[0]] === `a`) {
           currentSnake.grow();
@@ -117,7 +115,6 @@ class Game {
         }
       }
     }
-    return this.gameOver;
   }
 
   growBodyOfEachSnakeBy(number) {
@@ -142,6 +139,15 @@ class Game {
     this.generateMatrix();
     this.populateMatrixWithApples();
     this.populateMatrixWithSnakes();
+    this.isGameOver();
+  }
+  isGameOver() {
+    for (let i = 0; i < this.snakeArray.length; i++) {
+      if (this.snakeArray[i].crash === true) {
+        this.gameOver = true;
+      }
+    }
+    return this.gameOver;
   }
 
 }

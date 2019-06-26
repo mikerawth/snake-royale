@@ -18,13 +18,30 @@
     <script src="src/javascript.js"></script>
   </head>
   <body>
+    <h1>Snake Royale</h1>
     <div id="start-menu">
+      <div id="player-amount" class="options">
+        <p>How many players?</p>
+        <button id="one-player">Play Yourself</button>
+        <button id="two-player">I have friends</button>
+      </div>
+      <div id="game-speed" class="options">
+        <p>How fast would you like to go?</p>
+        <button>Grandma with a walker</button>
+        <button>Duck, Duck, Goose!</button>
+        <button>If you ain't first, you're last</button>
+      </div>
+    </div>
+    <div>
       <button id="start-game-btn">Start Game</button>
     </div>
-    <div id="scores">Score: <span class="snake1">0</span></div>
+    <div id="scores">
+      <div>Score: <span class="snake1">0</span></div>
+      <!-- <div class="snake2">Score: <span>0</span></div> -->
+    </div>
     <button id="restart-btn" style="display: none">Play Again?</button>
     <div id="grid-map" style="display: none"></div>
-    <ul id="instructions">
+    <!-- <ul id="instructions">
       <li>Press 'Start Game' to start</li>
       <li>Use arrow keys to move</li>
       <li>
@@ -35,6 +52,6 @@
         <span class="obstacle"></span>, game ends
       </li>
       <li>How long will you survive?</li>
-    </ul>
+    </ul> -->
   </body>
 </html>

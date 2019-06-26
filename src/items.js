@@ -28,8 +28,8 @@ class Items {
     this.collectionOfUs.splice(this.locateWithinCollection(arrayOfCordinates), 1)
   }
   generateRandom() {
-    let randomX = Math.floor(Math.random() * (this.xBoundary - 2)) + 1
-    let randomY = Math.floor(Math.random() * (this.yBoundary - 2)) + 1
+    let randomX = Math.floor(Math.random() * (this.xBoundary - 4)) + 2
+    let randomY = Math.floor(Math.random() * (this.yBoundary - 4)) + 2
     this.pushIntoCollection(this.cordinatesArray((randomX), (randomY)));
   }
   generate(x, y) {

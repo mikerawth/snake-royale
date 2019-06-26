@@ -1,8 +1,8 @@
 
 class Grid extends Game {
-  constructor(snakeArray, xBoundary, yBoundary) {
+  constructor(snakeArray, xBoundary, yBoundary, gameSpeed) {
     super(snakeArray, xBoundary, yBoundary)
-    this.speed = 75; //speed in milliseconds
+    this.speed = gameSpeed; //speed in milliseconds
     this.appleArrayObject = new Items(this.xBoundary, this.yBoundary);
     // this.obsticleArrayObject = new Obstacles(this.xBoundary, this.yBoundary);
   }
@@ -30,7 +30,7 @@ class Grid extends Game {
     }
   }
   displayScore() {
-    $("#scores span .snake1").text(this.snakeArray[0].score)
+    $("#scores span.snake1").text(this.snakeArray[0].score)
   }
   animate() {
     this.animation = setInterval(() => {

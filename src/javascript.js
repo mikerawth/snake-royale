@@ -5,24 +5,28 @@ let currentGrid, snake1, snake2;
 // will load when everything is ready
 $(document).ready(() => {
   console.log("ready");
-  let snake1 = new Snake("snake1", "s1", 2, 2, "ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "ArrowRight");
-  let snake2 = new Snake("snake2", "s2", 22, 22, "w", "d", "s", "a", "a");
-  currentGrid = new Grid([snake1, snake2], 25, 25);
+  let snake1 = new Snake("snake1", "s2", 2, 2, "w", "d", "s", "a", "d");
+  let snake2 = new Snake("snake2", "s1", 22, 22, "ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "ArrowLeft");
+  onePlayerGrid = new Grid([snake1], 25, 25, 75);
+  twoPlayerGrid = new Grid([snake1, snake2], 25, 25, 150);
   // currentGrid.drawGrid();
 
+  // $(document).on("keydown", () => {
   $("#start-game-btn").on("click", () => {
     $("#start-game-btn").toggle();
     $("#scores").toggle();
     $("#grid-map").toggle();
-    // currentGrid.appleArrayObject.generateSpecfic(2, 1)
+    // currentGrid = onePlayerGrid;
+    currentGrid = twoPlayerGrid;
     currentGrid.startGame();
     currentGrid.animate();
+    // $(document).unbind('keydown');
+    // upon each key down
+    $(document).on("keydown", (e) => {
+      currentGrid.turnSnakes(e.key);
+    })
   })
 
 
 
-  // upon each key down
-  $(document).on("keydown", (e) => {
-    currentGrid.turnSnakes(e.key);
-  })
 })

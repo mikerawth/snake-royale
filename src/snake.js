@@ -14,6 +14,7 @@ class Snake {
     this.left = leftKey
     this.currentDirection = startingDirection; // starting direction
     this.score = 0; //snake's score
+    this.crash = false;
   }
   turn(directionString) {
     // allowed directions.  since we can have multiple snakes, we do the check within the snake class, not the code
