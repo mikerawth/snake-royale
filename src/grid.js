@@ -30,7 +30,10 @@ class Grid extends Game {
     }
   }
   displayScore() {
-    $("#scores span.snake1").text(this.snakeArray[0].score)
+    $("#player-one-score span.snake1").text(this.snakeArray[0].score)
+    if (this.snakeArray.length === 2) {
+      $("#player-two-score span.snake2").text(this.snakeArray[1].score)
+    }
   }
   animate() {
     this.animation = setInterval(() => {

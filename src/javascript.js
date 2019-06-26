@@ -32,30 +32,38 @@ $(document).ready(() => {
 
 
   // $(document).on("keydown", () => {
-  $("#start-game-btn").on("click", () => {
-    $("#start-game-btn").toggle();
-    $("#scores").toggle();
-    $("#grid-map").toggle();
+  $(document).on("keydown", (e) => {
+    if (e.key === "Enter") {
+      $(document).unbind("keydown");
 
-    if ($('#one-player').is(".selected")) {
-      currentGrid = onePlayerGrid;
-    } else {
-      currentGrid = twoPlayerGrid;
+      $("#start-game-btn").toggle();
+      $("#player-one-score").toggle();
+      $("#place-holder").toggle();
+      $("#grid-map").toggle();
+
+      if ($('#one-player').is(".selected")) {
+        currentGrid = onePlayerGrid;
+        $("#does-not-exist").toggle();
+      } else {
+        currentGrid = twoPlayerGrid;
+        $("#player-two-score").toggle();
+      }
+
+      if ($('#slow-speed').is(".selected")) {
+        currentGrid.speed = 150;
+      } else {
+        currentGrid.speed = 75;
+
+      }
+
+      currentGrid.startGame();
+      currentGrid.animate();
+      $(document).on("keydown", (e) => {
+        currentGrid.turnSnakes(e.key);
+      })
+
     }
 
-    if ($('#slow-speed').is(".selected")) {
-      currentGrid.speed = 150;
-    } else {
-      currentGrid.speed = 75;
-    }
-
-    currentGrid.startGame();
-    currentGrid.animate();
-    // $(document).unbind('keydown');
-    // upon each key down
-    $(document).on("keydown", (e) => {
-      currentGrid.turnSnakes(e.key);
-    })
   })
 
 
