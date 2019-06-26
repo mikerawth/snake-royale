@@ -129,10 +129,9 @@ class Game {
 
   startGame() {
     this.generateMatrix();
-    this.growBodyOfEachSnakeBy(2);
+    this.growBodyOfEachSnakeBy(5);
     this.populateMatrixWithApples();
     this.populateMatrixWithSnakes();
-
   }
 
   runGame() {

@@ -1,8 +1,8 @@
 
 class Grid extends Game {
-  constructor(snakeArray, xBoundary, yBoundary, gameSpeed) {
+  constructor(snakeArray, xBoundary, yBoundary) {
     super(snakeArray, xBoundary, yBoundary)
-    this.speed = gameSpeed; //speed in milliseconds
+    this.speed = 150; //speed in milliseconds
     this.appleArrayObject = new Items(this.xBoundary, this.yBoundary);
     // this.obsticleArrayObject = new Obstacles(this.xBoundary, this.yBoundary);
   }

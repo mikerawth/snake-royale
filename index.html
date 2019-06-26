@@ -20,16 +20,21 @@
   <body>
     <h1>Snake Royale</h1>
     <div id="start-menu">
-      <div id="player-amount" class="options">
+      <div class="options">
         <p>How many players?</p>
-        <button id="one-player">Play Yourself</button>
-        <button id="two-player">I have friends</button>
+        <div class="option-buttons player">
+          <button id="two-player">I have friends</button>
+          <button id="one-player" class="selected">...Just Kidding</button>
+        </div>
       </div>
-      <div id="game-speed" class="options">
+      <div class="options">
         <p>How fast would you like to go?</p>
-        <button>Grandma with a walker</button>
-        <button>Duck, Duck, Goose!</button>
-        <button>If you ain't first, you're last</button>
+        <div class="option-buttons speed">
+          <button id="slow-speed" class="selected">
+            Grandma with a walker
+          </button>
+          <button id="fast-speed">If you ain't first, you're last</button>
+        </div>
       </div>
     </div>
     <div>
