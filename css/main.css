@@ -3,6 +3,13 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
 }
 
 #start-menu {
@@ -16,7 +23,6 @@ body {
 #start-menu .options {
   width: 250px;
   height: 150px;
-  /* border: 1px solid red; */
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -53,9 +59,14 @@ button.selected {
   justify-content: space-evenly;
 }
 
+.direction-list {
+  list-style-type: none;
+}
+
 #player-one-score,
 #player-two-score,
-#does-not-exist {
+.does-not-exist,
+#end-game-message {
   display: none;
 }
 
@@ -68,16 +79,7 @@ button.selected {
   width: 100%;
 }
 
-#left-display {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  width: 300px;
-  height: 500px;
-  padding-right: 100px;
-  padding-top: 100px;
-}
+#left-display,
 #right-display {
   display: flex;
   flex-direction: column;
@@ -85,8 +87,16 @@ button.selected {
   align-items: center;
   width: 300px;
   height: 500px;
-  padding-left: 100px;
+  width: 300px;
+  height: 500px;
   padding-top: 100px;
+}
+
+#left-display {
+  padding-right: 100px;
+}
+#right-display {
+  padding-left: 100px;
 }
 #place-holder {
   display: flex;
@@ -159,22 +169,16 @@ button.selected {
   z-index: -1;
 }
 
-#instructions {
+#footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
-#instructions .apple {
-  height: 20px;
-  width: 20px;
-  display: inline-block;
-  position: relative;
-  border: 1px solid rgb(118, 231, 127);
-  background-color: green;
-  box-sizing: border-box;
-  z-index: 2;
+#footer h2 {
+  margin: 0;
+  padding: 0;
 }
 
 /* #instructions .obstacle {

@@ -43,9 +43,10 @@ $(document).ready(() => {
 
       if ($('#one-player').is(".selected")) {
         currentGrid = onePlayerGrid;
-        $("#does-not-exist").toggle();
+        $(".does-not-exist").toggle();
       } else {
         currentGrid = twoPlayerGrid;
+        currentGrid.hasTimeLimit = true;
         $("#player-two-score").toggle();
       }
 

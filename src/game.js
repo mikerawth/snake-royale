@@ -4,19 +4,9 @@ class Game {
     this.xBoundary = xBoundary;
     this.yBoundary = yBoundary;
     this.appleArrayObject = new Items(this.xBoundary, this.yBoundary);
-    // this.obstacleArrayObject = new Items(this.xBoundary, this.yBoundary);
     this.gameOver = false;
+    this.hasTimeLimit = false;
   }
-  // generateSnakes() {
-  //   this.snake1 = new Snake("snake1", "s1", 2, 2, "ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "ArrowRight");
-  //   this.snake2 = new Snake("snake2", "s2", 23, 23, "W", "D", "S", "A", "A");
-  //   this.pushSnakesInArray([snake1, snake2])
-  // }
-  // pushSnakesInArray(arrayOfSnakes) {
-  //   for (let i = 0; i < arrayOfSnakes.length; i++) {
-  //     this.snakeArray.push(arrayOfSnakes[i]);
-  //   }
-  // }
   generateMatrix() {
     let matrix = [];
     for (let row = 0; row < this.yBoundary; row++) {
@@ -132,6 +122,7 @@ class Game {
     this.growBodyOfEachSnakeBy(5);
     this.populateMatrixWithApples();
     this.populateMatrixWithSnakes();
+    this.runTimer();
   }
 
   runGame() {
@@ -147,6 +138,39 @@ class Game {
       }
     }
     return this.gameOver;
+  }
+  startTimer() {
+    console.log('timer is starting')
+    this.time = 0;
+    this.currentTimer = setInterval(() => {
+      this.time += 1;
+      console.log(this.time)
+      if (this.gameOver === true) {
+        clearInterval(this.currentTimer);
+      }
+    }, 1000)
+  }
+  startCountDown() {
+    console.log('countdown is starting')
+    this.time = 5;
+    this.currentTimer = setInterval(() => {
+      this.time -= 1;
+      console.log(this.time)
+      if (this.time === 0) {
+        this.gameOver = true;
+      }
+      if (this.gameOver) {
+        clearInterval(this.currentTimer)
+        return this.gameOver
+      }
+    }, 1000)
+  }
+  runTimer() {
+    if (this.hasTimeLimit === true) {
+      this.startCountDown();
+    } else {
+      this.startTimer();
+    }
   }
 
 }

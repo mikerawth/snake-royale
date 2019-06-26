@@ -35,11 +35,16 @@ class Grid extends Game {
       $("#player-two-score span.snake2").text(this.snakeArray[1].score)
     }
   }
+  displayTimer() {
+    $("#timer").text(this.time);
+    // $("#timer").text(currentGrid.time)
+  }
   animate() {
     this.animation = setInterval(() => {
       super.runGame();
       this.drawGrid();
       this.displayScore();
+      this.displayTimer();
       if (this.gameOver) {
         console.log("game over")
         this.endGame();
@@ -48,5 +53,11 @@ class Grid extends Game {
   }
   endGame() {
     clearInterval(this.animation)
+    $("#end-game-message").toggle();
+    $(document).on("keydown", (e) => {
+      if (e.key === "Enter") {
+        location.reload();
+      }
+    })
   }
 }
