@@ -10,65 +10,42 @@ class Game {
 
   // creation of each matrix
   generateMatrix() {
-    let matrix = [];
+    this.gameMatrix = [];
     for (let row = 0; row < this.yBoundary; row++) {
-      matrix[row] = [];
+      this.gameMatrix[row] = [];
       for (let col = 0; col < this.xBoundary; col++) {
-        matrix[row][col] = "_"; // empty space
-
+        this.gameMatrix[row][col] = "_"; // empty space
         // populate border
-        if (row === 0 || row === this.yBoundary - 1 ||
-          col === 0 || col === this.xBoundary - 1) {
-          matrix[row][col] = "o"
-        }
-
-
+        this.populateBorder(row, col)
         // populate snakes
-        for (let i = 0; i < this.snakeArray.length; i++) {
-          let currentSnake = this.snakeArray[i];
-          // populate snake's body first
-          for (let j = 0; j < currentSnake.body.length; j++) {
-            let currentSnakeBodyTile = currentSnake.body[j];
-            if (currentSnakeBodyTile[1] === row && currentSnakeBodyTile[0] === col) {
-              matrix[row][col] = `b${this.snakeArray[i].matrixCode}`
-            }
-          }
-          // populate snake's head next (would overwrite body on matrix)
-          let currentSnakeHead = this.snakeArray[i].head;
-          if (currentSnakeHead[1] === row && currentSnakeHead[0] === col) {
-            matrix[row][col] = `h${this.snakeArray[i].matrixCode}`
-          }
-        }
+        this.populateSnakes(row, col)
       }
     }
     // populate apples
-    this.gameMatrix = matrix;
     this.populateMatrixWithApples();
   }
 
-  populateBorder(y, x) {
-    if (y === 0 || y === this.yBoundary - 1 ||
-      x === 0 || x === this.xBoundary - 1) {
-      matrix[y][x] = "o"
+  populateBorder(row, col) {
+    if (row === 0 || row === this.yBoundary - 1 ||
+      col === 0 || col === this.xBoundary - 1) {
+      this.gameMatrix[row][col] = "o"
     }
   }
 
-
-  // current way
-  populateSnakes(y, x) {
+  populateSnakes(row, col) {
     for (let i = 0; i < this.snakeArray.length; i++) {
       let currentSnake = this.snakeArray[i];
       // populate snake's body first
       for (let j = 0; j < currentSnake.body.length; j++) {
         let currentSnakeBodyTile = currentSnake.body[j];
-        if (currentSnakeBodyTile[1] === y && currentSnakeBodyTile[0] === x) {
-          matrix[y][x] = `b${this.snakeArray[i].matrixCode}`
+        if (currentSnakeBodyTile[1] === row && currentSnakeBodyTile[0] === col) {
+          this.gameMatrix[row][col] = `b${this.snakeArray[i].matrixCode}`
         }
       }
       // populate snake's head next (would overwrite body on matrix)
       let currentSnakeHead = this.snakeArray[i].head;
-      if (currentSnakeHead[1] === y && currentSnakeHead[0] === x) {
-        matrix[y][x] = `h${this.snakeArray[i].matrixCode}`
+      if (currentSnakeHead[1] === row && currentSnakeHead[0] === col) {
+        this.gameMatrix[row][col] = `h${this.snakeArray[i].matrixCode}`
       }
     }
   }
@@ -110,17 +87,18 @@ class Game {
         || this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]].slice(1, 2) === `s`) {
         currentSnake.crash = true;
 
+      } else {
         // if snake doesn't collide, detect if it will eat an apple
-      } else if (this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]] === `a`) {
-        this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]] = `h${currentSnake.matrixCode}`
+        if (this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]] === `a`) {
+          currentSnake.grow();
+          currentSnake.score += 1;
+        }
         currentSnake.crash = false;
-        currentSnake.grow();
+        // move the head in the matrix for the next snake
+        this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]] = `h${currentSnake.matrixCode}`
+        // if snake won't collide into anything, snake just moves
         currentSnake.move();
 
-        // if snake won't collide into anything, snake just moves
-      } else {
-        this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]] = `h${currentSnake.matrixCode}`
-        currentSnake.move();
       }
     }
   }
@@ -196,7 +174,7 @@ class Game {
   }
   startCountDown() {
     console.log('countdown is starting')
-    this.time = 5;
+    this.time = 30;
     this.currentTimer = setInterval(() => {
       this.time -= 1;
       console.log(this.time)
