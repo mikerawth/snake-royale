@@ -39,6 +39,10 @@ class Grid extends Game {
     $("#timer").text(this.time);
     // $("#timer").text(currentGrid.time)
   }
+  displayEndGameMessage() {
+    super.gameOverMessage();
+    $("#end-game-message").text(this.gameOverMessage);
+  }
   animate() {
     this.animation = setInterval(() => {
       super.runGame();
@@ -46,8 +50,8 @@ class Grid extends Game {
       this.displayScore();
       this.displayTimer();
       if (this.gameOver) {
-        console.log("game over")
         this.endGame();
+        this.displayEndGameMessage();
       }
     }, this.speed)
   }

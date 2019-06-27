@@ -6,6 +6,7 @@ class Game {
     this.appleArrayObject = new Items(this.xBoundary, this.yBoundary);
     this.gameOver = false;
     this.hasTimeLimit = false;
+    this.gameOverMessage = "";
   }
 
   // creation of each matrix
@@ -77,7 +78,7 @@ class Game {
     }
   }
 
-  snakesCollidesIntoSomethingOrWillMove() {
+  snakesCollideIntoSomethingOrWillMove() {
     // go through each snake
     for (let i = 0; i < this.snakeArray.length; i++) {
       let currentSnake = this.snakeArray[i];
@@ -95,7 +96,6 @@ class Game {
         }
         currentSnake.crash = false;
         // move the head in the matrix for the next snake
-        this.gameMatrix[predictedSnakePosition[1]][predictedSnakePosition[0]] = `h${currentSnake.matrixCode}`
         // if snake won't collide into anything, snake just moves
         currentSnake.move();
 
@@ -144,12 +144,11 @@ class Game {
   startGame() {
     this.generateMatrix();
     this.growBodyOfEachSnakeBy(2);
-
     this.runTimer();
   }
 
   runGame() {
-    this.snakesCollidesIntoSomethingOrWillMove();
+    this.snakesCollideIntoSomethingOrWillMove();
     this.generateMatrix();
     this.isGameOver();
   }
@@ -157,9 +156,37 @@ class Game {
     for (let i = 0; i < this.snakeArray.length; i++) {
       if (this.snakeArray[i].crash === true) {
         this.gameOver = true;
+
       }
     }
     return this.gameOver;
+  }
+
+  gameOverMessage() {
+    if (this.snakeArray.length === 1) {
+      //run single player game over (display score)
+      this.gameOverMessage = `Game over.  You scored ${this.snakeArray[0].score} points`
+    }
+    // multiplayer game over, determine winner
+    else {
+      //draw
+      if (this.snakeArray[0].crash === true && this.snakeArray[1].crash === true) {
+        this.gameOverMessage = "Draw! Both of you crashed at the same time"
+      }
+      else if (this.snakeArray[0].score === this.snakeArray[1].score) {
+        this.gameOverMessage = `Draw! Time is up! Both of you scored ${this.snakeArray[0].score}`
+      }
+      //snake1 wins
+      else if (this.snakeArray[0].crash === false && this.snakeArray[1].crash === true
+        || this.snakeArray[0].score > this.snakeArray[1]) {
+        this.gameOverMessage = `Player 1 Wins! Score: ${this.snakeArray[0].score}`
+      }
+      //snake2 wins
+      else {
+        this.gameOverMessage = `Player 2 Wins! Score: ${this.snakeArray[1].score}`
+      }
+    }
+    console.log(this.gameOverMessage);
   }
   startTimer() {
     console.log('timer is starting')
@@ -172,6 +199,7 @@ class Game {
       }
     }, 1000)
   }
+
   startCountDown() {
     console.log('countdown is starting')
     this.time = 30;
@@ -187,6 +215,7 @@ class Game {
       }
     }, 1000)
   }
+
   runTimer() {
     if (this.hasTimeLimit === true) {
       this.startCountDown();
