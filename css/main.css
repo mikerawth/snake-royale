@@ -5,19 +5,45 @@ body {
   flex-direction: column;
   margin: 0;
   padding: 0;
+  font-family: sans-serif;
+  /* background-image: url(https://media.giphy.com/media/HwXZrM6AQ4crC/giphy.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: whitesmoke; */
 }
 
 h1 {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+p {
   margin: 0;
   padding: 0;
+}
+
+#title {
+  text-transform: uppercase;
+  font-size: 50px;
+  letter-spacing: -3px;
+  word-spacing: 10px;
+  line-height: 2rem;
+}
+.snake-title {
+  color: rgb(252, 71, 71);
+}
+.royale-title {
+  font-size: 43.7px;
 }
 
 #start-menu {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  width: 500px;
+  width: 125%;
+  margin: 10px;
+  padding: 0;
 }
 
 #start-menu .options {
@@ -47,6 +73,9 @@ button {
   height: 35px;
   width: 100px;
   margin: 2px 0;
+  border-radius: 100px;
+  border: none;
+  background-color: rgb(233, 233, 233);
 }
 
 button.selected {
@@ -59,8 +88,8 @@ button.selected {
   justify-content: space-evenly;
 }
 
-.direction-list {
-  list-style-type: none;
+.direction-img {
+  width: 200px;
 }
 
 #player-one-score,
@@ -75,7 +104,7 @@ button.selected {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  height: 400px;
   width: 100%;
 }
 
@@ -86,10 +115,8 @@ button.selected {
   justify-content: start;
   align-items: center;
   width: 300px;
-  height: 500px;
-  width: 300px;
-  height: 500px;
-  padding-top: 100px;
+  height: 400px;
+  /* padding-top: 100px; */
 }
 
 #left-display {
@@ -103,16 +130,17 @@ button.selected {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 500px;
-  width: 500px;
+  height: 400px;
+  width: 400px;
 }
 
 #grid-map {
   position: relative;
-  height: 500px;
-  width: 500px;
-  border: 1px solid black;
+  height: 400px;
+  width: 400px;
+  /* outline: 5px solid black; */
   background-color: lightgrey;
+  border-radius: 25px;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -122,49 +150,47 @@ button.selected {
 
 .grid-tile {
   position: relative;
-  height: 20px;
-  width: 20px;
-  border: 1px solid blue;
-  background-color: skyblue;
+  height: 16px;
+  width: 16px;
+  background-color: rgb(235, 167, 103);
   box-sizing: border-box;
   z-index: -1;
 }
 
 .grid-tile:nth-child(odd) {
   position: relative;
-  border: 1px solid blue;
-  background-color: rgb(183, 218, 224);
+  background-color: rgb(245, 188, 156);
   z-index: -1;
 }
 
 #grid-map .snake1 {
   position: relative;
   border: 1px solid red;
-  background-color: maroon;
+  background-color: rgb(252, 71, 71);
   box-sizing: border-box;
   z-index: 1;
 }
 
 #grid-map .snake2 {
   position: relative;
-  border: 1px solid red;
-  background-color: yellow;
+  border: 1px solid blue;
+  background-color: rgb(62, 111, 247);
   box-sizing: border-box;
   z-index: 1;
 }
 
 #grid-map .apple {
   position: relative;
-  border: 1px solid rgb(118, 231, 127);
   background-color: green;
   box-sizing: border-box;
   z-index: 2;
+  border-radius: 50%;
 }
 
 #grid-map .obstacle {
   position: relative;
-  height: 20px;
-  width: 20px;
+  height: 16px;
+  width: 16px;
 
   z-index: -1;
 }

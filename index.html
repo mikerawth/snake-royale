@@ -18,7 +18,11 @@
     <script src="src/javascript.js"></script>
   </head>
   <body>
-    <h1>Snake Royale</h1>
+    <h1 id="title">
+      <span class="snake-title">S</span>nake <br /><span class="royale-title"
+        >Royale</span
+      >
+    </h1>
     <div id="start-menu">
       <div class="options">
         <p>How many players?</p>
@@ -43,14 +47,14 @@
     <div id="scores"></div>
     <div id="main-content">
       <div id="left-display">
-        <div>Player 1</div>
-        <ul class="direction-list snake1">
-          <p>To change directions:</p>
-          <li>Up: "W"</li>
-          <li>Right: "D"</li>
-          <li>Down: "S"</li>
-          <li>Left: "A"</li>
-        </ul>
+        <div class="direction-list snake1">
+          <img
+            class="direction-img"
+            src="img/wasd-keys.png"
+            alt="use arrow keys to move"
+          />
+        </div>
+        <label class="player-label">Player 1</label>
         <div id="player-one-score">
           Score: <span class="snake1 score">0</span>
         </div>
@@ -61,16 +65,17 @@
         <div id="grid-map" style="display: none"></div>
       </div>
       <div id="right-display">
-        <div>
-          Player 2
+        <div class="direction-list snake2">
+          <img
+            class="direction-img"
+            src="img/arrow-keys.png"
+            alt="use arrow keys to move"
+          />
         </div>
-        <ul class="direction-list snake1">
-          <p>To change directions:</p>
-          <li>Up: Up Arrow</li>
-          <li>Right: Right Arrow</li>
-          <li>Down: Down Arrow</li>
-          <li>Left: Left Arrow</li>
-        </ul>
+        <label class="player-label">
+          Player 2
+        </label>
+
         <div id="player-two-score">
           Score: <span class="snake2 score">0</span>
         </div>
@@ -82,7 +87,7 @@
     </div>
     <div id="footer">
       <h2>Timer: <span id="timer">0</span></h2>
-      <h2 id="end-game-message">Press Enter to refresh</h2>
+      <h2 id="end-game-message"></h2>
     </div>
   </body>
 </html>

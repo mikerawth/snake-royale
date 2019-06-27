@@ -8,7 +8,7 @@ let currentGrid, snake1, snake2;
 $(document).ready(() => {
   console.log("ready");
   let snake1 = new Snake("snake1", "s1", 2, 13, "w", "d", "s", "a", "d");
-  let snake2 = new Snake("snake2", "s2", 20, 13, "ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "ArrowLeft");
+  let snake2 = new Snake("snake2", "s2", 23, 13, "ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft", "ArrowLeft");
   onePlayerGrid = new Grid([snake1], 25, 25);
   twoPlayerGrid = new Grid([snake1, snake2], 25, 25);
 
@@ -51,7 +51,7 @@ $(document).ready(() => {
       }
 
       if ($('#slow-speed').is(".selected")) {
-        currentGrid.speed = 150;
+        currentGrid.speed = 1000;
       } else {
         currentGrid.speed = 75;
 

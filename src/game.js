@@ -143,7 +143,7 @@ class Game {
 
   startGame() {
     this.generateMatrix();
-    this.growBodyOfEachSnakeBy(2);
+    this.growBodyOfEachSnakeBy(10);
     this.runTimer();
   }
 
