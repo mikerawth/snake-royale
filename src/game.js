@@ -54,7 +54,7 @@ class Game {
   populateMatrixWithApples() {
     let appleArray = this.appleArrayObject.collectionOfUs
     let counter = appleArray.length;
-    while (counter < 3) {
+    while (counter < 1) {
       this.appleArrayObject.generateRandom();
       counter++;
     }
@@ -143,7 +143,7 @@ class Game {
 
   startGame() {
     this.generateMatrix();
-    this.growBodyOfEachSnakeBy(10);
+    this.growBodyOfEachSnakeBy(2);
     this.runTimer();
   }
 

@@ -37,9 +37,11 @@ $(document).ready(() => {
       $(document).unbind("keydown");
 
       $("#start-game-btn").toggle();
-      $("#player-one-score").toggle();
+      $("#left-display").toggle();
+      $("#right-display").toggle();
       $("#place-holder").toggle();
       $("#grid-map").toggle();
+      $("#start-menu").toggle();
 
       if ($('#one-player').is(".selected")) {
         currentGrid = onePlayerGrid;
@@ -51,9 +53,9 @@ $(document).ready(() => {
       }
 
       if ($('#slow-speed').is(".selected")) {
-        currentGrid.speed = 1000;
+        currentGrid.speed = 150;
       } else {
-        currentGrid.speed = 75;
+        currentGrid.speed = 50;
 
       }
 
