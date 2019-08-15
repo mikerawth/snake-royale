@@ -27,17 +27,17 @@
       <div class="options">
         <p>How many players?</p>
         <div class="option-buttons player">
-          <button id="two-player">I have friends</button>
-          <button id="one-player" class="selected">...Just Kidding</button>
+          <button id="one-player" class="selected">Solo</button>
+          <button id="two-player">With a friend</button>
         </div>
       </div>
       <div class="options">
         <p>How fast would you like to go?</p>
         <div class="option-buttons speed">
-          <button id="slow-speed">
+          <button id="slow-speed" class="selected">
             Grandma with a walker
           </button>
-          <button id="fast-speed" class="selected">
+          <button id="fast-speed">
             If you ain't first, you're last
           </button>
         </div>
@@ -62,7 +62,7 @@
         </div>
         <div class="game-over-msg snake1"></div>
       </div>
-      <div id="place-holder">Press Enter to start!</div>
+      <!-- <div id="place-holder">Press Enter to start!</div> -->
       <div id="grid-box">
         <div id="grid-map" style="display: none"></div>
       </div>
@@ -87,9 +87,11 @@
         <div class="game-over-msg snake2"></div>
       </div>
     </div>
-    <div id="footer">
-      <h2>Timer: <span id="timer">0</span></h2>
-      <h2 id="end-game-message"></h2>
+    <div class="display-none">
+      <div id="footer">
+        <h2 id="timer-div">Timer: <span id="timer">0</span></h2>
+        <h2 id="end-game-message"></h2>
+      </div>
     </div>
   </body>
 </html>
