@@ -1,97 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="css/main.css" />
-    <title>Snake Royale</title>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
-      crossorigin="anonymous"
-    ></script>
-    <script src="src/items.js"></script>
-    <script src="src/snake.js"></script>
-    <script src="src/game.js"></script>
-    <script src="src/grid.js"></script>
-    <script src="src/javascript.js"></script>
-  </head>
-  <body>
-    <h1 id="title">
-      <span class="snake-title">S</span>nake <br /><span class="royale-title"
-        >Royale</span
-      >
-    </h1>
-    <div id="start-menu">
-      <div class="options">
-        <p>How many players?</p>
-        <div class="option-buttons player">
-          <button id="one-player" class="selected">Solo</button>
-          <button id="two-player">With a friend</button>
-        </div>
-      </div>
-      <div class="options">
-        <p>How fast would you like to go?</p>
-        <div class="option-buttons speed">
-          <button id="slow-speed" class="selected">
-            Grandma with a walker
-          </button>
-          <button id="fast-speed">
-            If you ain't first, you're last
-          </button>
-        </div>
-      </div>
-    </div>
-    <div>
-      <!-- <button id="start-game-btn">Start Game</button> -->
-    </div>
-    <div id="scores"></div>
-    <div id="main-content">
-      <div id="left-display">
-        <div class="direction-list snake1">
-          <img
-            class="direction-img"
-            src="img/wasd-keys.png"
-            alt="use arrow keys to move"
-          />
-        </div>
-        <label class="player-label">Player 1</label>
-        <div id="player-one-score">
-          Score: <span class="snake1 score">0</span>
-        </div>
-        <div class="game-over-msg snake1"></div>
-      </div>
-      <!-- <div id="place-holder">Press Enter to start!</div> -->
-      <div id="grid-box">
-        <div id="grid-map" style="display: none"></div>
-      </div>
-      <div id="right-display">
-        <div class="direction-list snake2">
-          <img
-            class="direction-img"
-            src="img/arrow-keys.png"
-            alt="use arrow keys to move"
-          />
-        </div>
-        <label class="player-label">
-          Player 2
-        </label>
 
-        <div id="player-two-score">
-          Score: <span class="snake2 score">0</span>
-        </div>
-        <div class="does-not-exist">
-          <p>Your imaginary friends still love you</p>
-        </div>
-        <div class="game-over-msg snake2"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="css/main.css" />
+  <title>Snake Royale</title>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
+  <script src="src/items.js"></script>
+  <script src="src/snake.js"></script>
+  <script src="src/game.js"></script>
+  <script src="src/grid.js"></script>
+  <script src="src/javascript.js"></script>
+</head>
+
+<body>
+  <h1 id="title">
+    <span class="snake-title">S</span>nake <br /><span class="royale-title">Royale</span>
+  </h1>
+  <div id="instructions">
+    <h3>Hello, welcome to my first app!</h3>
+    <p>You can play snake either by yourself, or with another player. See the keys below on which keys to use</p>
+    <p>When you are ready, press <em>ENTER</em> on your keyboard to begin.</p>
+    <p>1-player version is about how many apples you can get before you crash.</p>
+    <p>2-player version includes a 30 second time-limit.</p>
+    <p>When the game is over, your score will be displayed on the bottom of the screen.</p>
+    <p>To play again, press <em>ENTER</em></p>
+  </div>
+  <div id="start-menu">
+    <div class="options">
+      <p>How many players?</p>
+      <div class="option-buttons player">
+        <button id="one-player" class="selected">Solo</button>
+        <button id="two-player">With a friend</button>
       </div>
     </div>
-    <div>
-      <div id="footer">
-        <h2 id="timer-div">Timer: <span id="timer">0</span></h2>
-        <h2 id="end-game-message"></h2>
+    <div class="options">
+      <p>How fast would you like to go?</p>
+      <div class="option-buttons speed">
+        <button id="slow-speed" class="selected">
+          Grandma with a walker
+        </button>
+        <button id="fast-speed">
+          If you ain't first, you're last
+        </button>
       </div>
     </div>
-  </body>
+  </div>
+  <div>
+    <!-- <button id="start-game-btn">Start Game</button> -->
+  </div>
+  <div id="scores"></div>
+  <div id="main-content">
+    <div id="left-display">
+      <div class="direction-list snake1">
+        <img class="direction-img" src="img/wasd-keys.png" alt="use arrow keys to move" />
+      </div>
+      <label class="player-label">Player 1</label>
+      <div id="player-one-score">
+        Score: <span class="snake1 score">0</span>
+      </div>
+      <div class="game-over-msg snake1"></div>
+    </div>
+    <!-- <div id="place-holder">Press Enter to start!</div> -->
+    <div id="grid-box">
+      <div id="grid-map" style="display: none"></div>
+    </div>
+    <div id="right-display">
+      <div class="direction-list snake2">
+        <img class="direction-img" src="img/arrow-keys.png" alt="use arrow keys to move" />
+      </div>
+      <label class="player-label">
+        Player 2
+      </label>
+
+      <div id="player-two-score">
+        Score: <span class="snake2 score">0</span>
+      </div>
+      <div class="does-not-exist">
+        <p>Your imaginary friends still love you</p>
+      </div>
+      <div class="game-over-msg snake2"></div>
+    </div>
+  </div>
+  <div>
+    <div id="footer">
+      <h2 id="timer-div">Timer: <span id="timer">0</span></h2>
+      <h2 id="end-game-message"></h2>
+    </div>
+  </div>
+</body>
+
 </html>
